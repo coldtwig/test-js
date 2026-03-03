@@ -32,9 +32,10 @@ class Api
 	 */
 	get_api_path(object, template)
 	{
-		let result = '';
-
-		/* Здесь ваш код */
+		let result = template.replace(/%([^%]+)%/g, (_, key) =>
+		{
+			return encodeURIComponent(String(object[key] ?? ''));
+		});
 
 		return result;
 	}
